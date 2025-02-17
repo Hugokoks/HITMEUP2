@@ -1,0 +1,152 @@
+:root {
+
+    --mainColor: #7E60BF;
+    --secondColor: #FFFFFF;
+    --thirdColor: #8967B3;
+    --darkColor: #1f1e1e7d;
+}
+
+.box-modalChat {
+    position: absolute;
+    width: 850px;
+    height: 800px;
+    left: 50%;
+    top: 50%;
+
+    border-radius: 12px;
+    transform: translate(-50%, -50%);
+
+    background-color: rgba(27, 26, 26, 0.959);
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-modalChat {
+    margin-top: 20px;
+    width: 90%;
+    height: 120px;
+    border-radius: 12px;
+
+    display: grid;
+
+    grid-template-columns: 20% 60% 20%;
+    align-items: center;
+}
+
+
+.header-modalChat img {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    grid-column: 1/2;
+}
+
+.modalChat-username {
+    font-size: 30px;
+    grid-column: 2/3;
+    justify-self: center;
+    font-weight: 500;
+
+}
+
+.chatWindow-modalChat {
+    width: 90%;
+    height: 520px;
+
+    background-color: #111111;
+    margin-top: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.message-wrap-sender {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.message-wrap-recipient {
+    display: flex;
+    flex-direction: flex-start;
+    align-items: center;
+
+
+}
+
+.chat-text {
+    flex-shrink: 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    max-width: 320px;
+    /* Set a maximum width to allow wrapping */
+    flex-wrap: wrap;
+    /* Allows text to wrap to the next line */
+    word-break: break-word;
+    /* Breaks long words to fit within the container */
+}
+
+
+
+.chat-text-sender {
+    background-color: var(--mainColor);
+
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
+.chat-text-recipient {
+
+    align-self: flex-start;
+    margin-left: 20px;
+    background-color: rgb(57, 55, 58);
+}
+
+.footer-modalChat {
+    width: 90%;
+    height: 80px;
+    display: flex;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-chat {
+    background-color: #292929;
+    border: 1px solid #3e3e3e;
+    border-radius: 8px;
+    color: #fff;
+    padding: 14px 24px;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 400px;
+    height: 30px;
+    grid-column: 2/3;
+    justify-self: center;
+}
+
+.input-chat:hover {
+    border: 1px solid #fff;
+}
+
+.btn-uploadImg {
+    font-size: 12px;
+    background-color: #3e3e3e;
+
+}
+.loading-typing{
+    margin-left: 30px;
+
+}
