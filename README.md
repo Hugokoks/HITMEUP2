@@ -45,7 +45,7 @@ step 6.
 
 npm start
 
-///run WS socket type:
+///run Web Socket type:
 
 npm run wsServer 
 
