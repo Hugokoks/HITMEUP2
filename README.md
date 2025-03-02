@@ -19,7 +19,7 @@ docker run --name my-sql-container -e ACCEPT_EULA=Y -e SA_PASSWORD=Password*1234
 
 step 3.
 
-///if you have created db you can now pull my app 
+///if you created db you can now pull my app 
 
 git clone https://github.com/Hugokoks/HITMEUP2.git
 
