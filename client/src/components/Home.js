@@ -104,6 +104,7 @@ export default function Home() {
 
         async function getFriendList() {
             const friendListcall = await getFetch({ url: `${API_URLS.GET_FRIENDLIST}?id=${userId}`, userId });
+
             setFriendListArray(friendListcall.friendListArray);
             setFriendListQuery(friendListcall.friendListArray);
 

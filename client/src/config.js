@@ -1,4 +1,4 @@
-const urlPort = 6001;
+const urlPort = 4000;
 
 const API_URLS = {
     REGISTER_URL: `http://127.0.0.1:${urlPort}/api/register`,

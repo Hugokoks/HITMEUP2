@@ -1,12 +1,13 @@
 const sql = require('mssql');
 const { generateID, getHashPassword } = require('../functions');
 const { getAccountByUsername, getAccountById, findFriend } = require('./reusableSqlFunctions');
-const { config, tables } = require('./sqlConfig');
-const { query } = require('express');
+const { tables, getPool } = require('./sqlConfig');
 const { accounts, friendList, messages } = tables;
 
+
 exports.register = async function ({ username, password }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
+
     const check = await getAccountByUsername(username);
     if (check.recordset.length > 0) throw new Error('username already exists');
     const hashedPassword = await getHashPassword(password);
@@ -32,7 +33,8 @@ exports.login = async function ({ username }) {
 
 }
 exports.updateImg = async function ({ userId, uploadedImg }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
+
     await pool.request()
         .input('id', sql.VarChar, userId)
         .input('uploadedImg', sql.VarChar, uploadedImg)
@@ -43,7 +45,7 @@ exports.updateImg = async function ({ userId, uploadedImg }) {
 
 exports.queryAccounts = async function ({ username, userId }) {
 
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     let account = await pool.request()
         .query(`SELECT id,username,img FROM ${accounts} WHERE username like '%${username}%'`);
 
@@ -61,7 +63,7 @@ exports.queryAccounts = async function ({ username, userId }) {
 
 }
 exports.insertFriendList = async function ({ userId, friendId, username, status = '1' }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const check = await findFriend({ userId, friendId });
 
     if (check.recordset.length > 0) throw new Error('you already added this friend');
@@ -77,7 +79,7 @@ exports.insertFriendList = async function ({ userId, friendId, username, status 
 }
 exports.updateFriendList = async function ({ userId, friendId }) {
 
-    const pool = await sql.connect(config);
+    const pool = await getPool();
 
     await pool.request()
         .input('userId', sql.VarChar, userId)
@@ -87,7 +89,7 @@ exports.updateFriendList = async function ({ userId, friendId }) {
     return ({ status: 'success' });
 }
 exports.deleteFriendList = async function ({ userId, friendId }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
 
     await pool.request()
         .input('userId', sql.VarChar, userId)
@@ -96,7 +98,7 @@ exports.deleteFriendList = async function ({ userId, friendId }) {
 
 }
 exports.getFriendRequests = async function ({ userId }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     let res = await pool.request()
         .input('userId', sql.VarChar, userId)
         .query(`SELECT * FROM ${friendList} WHERE id=@userId AND status = '1'`);
@@ -113,7 +115,7 @@ exports.getFriendRequests = async function ({ userId }) {
     return friendRequests;
 }
 exports.insertMessage = async function ({ userId, friendId, message, status }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const timestamp = new Date(); // Generates the current timestamp
 
     await pool.request()
@@ -126,7 +128,7 @@ exports.insertMessage = async function ({ userId, friendId, message, status }) {
 }
 exports.getMessages = async function ({ userId, friendId }) {
 
-    const pool = await sql.connect(config);
+    const pool = await getPool();
 
     const res = await pool.request()
         .input('userId', sql.VarChar, userId)

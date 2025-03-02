@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: './configHome.env' });
+dotenv.config({ path: './configDocker.env' });
 
 const jwt = require('jsonwebtoken');
 const key = process.env.KEY;

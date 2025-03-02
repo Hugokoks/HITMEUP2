@@ -22,7 +22,7 @@ const uploadFile = require('./middleware/uploadFile');
 
 ////server features declaration
 const app = express();
-dotenv.config({ path: './configHome.env' });
+dotenv.config({ path: './configDocker.env' });
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

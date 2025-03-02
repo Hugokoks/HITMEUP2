@@ -10,7 +10,7 @@ const { error } = require('console');
 const key = process.env.KEY;
 
 
-dotenv.config({ path: './configHome.env' });
+dotenv.config({ path: './configDocker.env' });
 
 const connected = {};
 const users = {};

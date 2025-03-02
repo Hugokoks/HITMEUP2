@@ -1,10 +1,10 @@
-const { config, tables } = require('./sqlConfig');
+const { tables, getPool } = require('./sqlConfig');
 const { accounts, friendList } = tables;
 const sql = require('mssql');
 
 
 exports.getAccountByUsername = async function (username) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const account = await pool.request()
         .input('username', sql.VarChar, username)
         .query(`SELECT * FROM ${accounts} WHERE username = @username`);
@@ -13,7 +13,7 @@ exports.getAccountByUsername = async function (username) {
 
 exports.getAccountById = async function (id, password = true) {
     const query = password ? `SELECT * FROM ${accounts} WHERE id = @id` : `SELECT id,username,img FROM ${accounts} WHERE id = @id`;
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const account = await pool.request()
         .input('id', sql.VarChar, id)
         .query(query);
@@ -22,7 +22,7 @@ exports.getAccountById = async function (id, password = true) {
 }
 exports.findFriend = async function ({ userId, friendId }) {
 
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const friend = await pool.request()
         .input('userId', sql.VarChar, userId)
         .input('friendId', sql.VarChar, friendId)
@@ -31,7 +31,7 @@ exports.findFriend = async function ({ userId, friendId }) {
     return friend;
 }
 exports.getFriendList = async function ({ userId }) {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const friends = await pool.request()
         .input('userId', sql.VarChar, userId)
         .query(`SELECT * FROM ${friendList} WHERE id=@userId AND status = '2'`);
