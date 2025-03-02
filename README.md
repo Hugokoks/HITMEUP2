@@ -25,7 +25,7 @@ git clone https://github.com/Hugokoks/HITMEUP2.git
 
 step 4.
 
-////get in to client folder and type
+////get in to client folder and type:
 
 npm install
 
@@ -33,20 +33,21 @@ npm install
 
 step 5.
 
-///go to client folder type to start react app
+///go to client folder start react type:
 
 npm start
+
+step 6.
 
 ///go to server folder 
 
-///start api's command
+///run API's type:
 
 npm start
 
-///start ws socket server 
+///run WS socket type:
 
 npm run wsServer 
-
 
 
 
