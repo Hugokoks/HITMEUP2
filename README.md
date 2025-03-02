@@ -1,5 +1,5 @@
 hello project db is running on docker ms sql img 
-so if you want to run it you will need to docker and node js 
+so if you want to run it you will need docker and node js 
 
 
 
