@@ -1,3 +1,5 @@
+its chatting social media where you can chat in real time with your friends.
+
 hello project db is running on docker ms sql img 
 so if you want to run it you will need docker and node js 
 
